@@ -6,8 +6,10 @@
     "build": "vuedx-typecheck . && vite build"
   },
   "dependencies": {
-    "vue": "3.0.11",
+    "ant-design-vue": "^3.2.10",
+    "vue": "^3.2.37",
     "vue-router": "^4.0.6",
+    "vuedraggable": "4.1.0",
     "vuex": "4.0.0"
   },
   "devDependencies": {

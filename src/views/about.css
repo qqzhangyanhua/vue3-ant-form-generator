@@ -1,0 +1,9 @@
+.drag-box .items {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #e3e3e3;
+  border-radius: 8px;
+}

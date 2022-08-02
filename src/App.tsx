@@ -8,6 +8,7 @@ export default defineComponent({
     return () => (
       <>
         <div id="nav">
+          <a-button>aaaa</a-button>
           <RouterLink to="/">Home</RouterLink> |
           <RouterLink to="/about">About</RouterLink>
         </div>
