@@ -58,7 +58,7 @@ export default defineComponent({
             list={list}
             on-move={onMoveCallback}
             on-end={getdata}
-            v-slots={{ item: (element: any) => <div class="items">1234 {element.id}</div> }}
+            v-slots={{ item: (element: any) => <div class="items">1234 {JSON.stringify(element)}</div> }}
           ></Draggable>
         </div>
       </>
