@@ -7,36 +7,15 @@ export default defineComponent({
   setup() {
 
       let list = reactive([
-        {
-          label: '模块1',
-          id: 1,
-          isflod: false,
-        },
-        {
-          label: '模块2',
-          id: 2,
-          isflod: false,
-        },
-        {
-          label: '模块3',
-          id: 3,
-          isflod: false,
-        },
-        {
-          label: '模块4',
-          id: 4,
-          isflod: false,
-        },
-        {
-          label: '模块5',
-          id: 5,
-          isflod: false,
-        },
-        {
-          label: '模块6',
-          id: 6,
-          isflod: false,
-        },
+        { name: 'dog 1', id: 1 },
+        { name: 'dog 2', id: 2 },
+        { name: 'dog 3', id: 3 },
+        { name: 'dog 4', id: 4 },
+      ]);
+      const list2 = reactive([
+        { name: 'cat 5', id: 5 },
+        { name: 'cat 6', id: 6 },
+        { name: 'cat 7', id: 7 },
       ]);
       const onMoveCallback = (val:any) => {
         console.log('拖动前的索引 :' + val.moved.newIndex);
@@ -46,19 +25,35 @@ export default defineComponent({
         console.log(val.draggedContext.element.id);
       };
       // 查看最新的数据
-      const submit = () => {
-        console.log(list);
+      const handelChange = (e:any) => {
+        console.log(e);
       };
     return () => (
       <>
-        <a-button danger>按钮</a-button>
-        <div class="drag-box">
+        <a-button danger draggable>
+          按钮
+        </a-button>
+        <div class="drag-box" style={{ display: 'flex' }}>
           <Draggable
             itemKey={'id'}
+            class="dragArea list-group"
             list={list}
             on-move={onMoveCallback}
             on-end={getdata}
-            v-slots={{ item: (element: any) => <div class="items">1234 {JSON.stringify(element)}</div> }}
+            group={{ name: 'people', pull: 'clone', put: false }}
+            v-slots={{
+              item: ({ element }: any) => <div class="items">1234 {element.name}</div>,
+            }}
+          ></Draggable>
+          <Draggable
+            class="dragArea list-group"
+            itemKey={'id'}
+            list={list2}
+            group="people"
+            on-move={onMoveCallback}
+            v-slots={{
+              item: ({ element }: any) => <div class="items">456 {element.name}</div>,
+            }}
           ></Draggable>
         </div>
       </>
