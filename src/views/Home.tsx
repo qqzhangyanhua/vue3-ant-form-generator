@@ -22,6 +22,7 @@ export default defineComponent({
         list: layoutComponents,
       },
     ]);
+   const drawingList = reactive([]);
     const handelRun = () => {
       console.log('run');
       
@@ -38,6 +39,9 @@ export default defineComponent({
     const handelDelete =()=>{
       console.log('delete');
     }
+    const addComponent = (component:any) => {
+    console.log('addComponent',component)
+    }
     return () => (
       <div class="container">
         <div class="left-board">
@@ -49,13 +53,12 @@ export default defineComponent({
               {leftComponents.map((item, index) => (
                 <div>
                   <div class="components-title">
-                    <KeyOutlined/>
-                    {item.title}</div>
+                    <KeyOutlined />
+                    {item.title}
+                  </div>
                   {item.list.map((element) => (
-                    <div class="components-item">
-                      <div class="components-body">
-                         { element.__config__.label }
-                      </div>
+                    <div class="components-item" onClick={addComponent.bind(this, element)}>
+                      <div class="components-body">{element.__config__.label}</div>
                     </div>
                   ))}
                 </div>
@@ -104,7 +107,13 @@ export default defineComponent({
             </a-button>
           </div>
           <div class="center-scrollbar">
-            <a-row class="center-board-row">我是content</a-row>
+            <a-row class="center-board-row">
+              <a-form>
+                <div v-show={drawingList.length==0} class="empty-info">
+                  从左侧拖入或点选组件进行表单设计
+                </div>
+              </a-form>
+            </a-row>
           </div>
         </div>
         <RightPanel />
