@@ -1,7 +1,7 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-06 21:32:10
- * @LastEditTime: 2022-08-08 08:57:03
+ * @LastEditTime: 2022-08-08 15:00:59
  * @Description: 配置文件
  */
 
@@ -28,7 +28,7 @@ export const inputComponents = [
       labelWidth: null,
       showLabel: true,
       changeTag: true,
-      tag: 'el-input',
+      tag: 'a-input',
       tagIcon: 'input',
       defaultValue: undefined,
       required: true,
@@ -61,7 +61,7 @@ export const inputComponents = [
       label: '多行文本',
       labelWidth: null,
       showLabel: true,
-      tag: 'el-input',
+      tag: 'a-input',
       tagIcon: 'textarea',
       defaultValue: undefined,
       required: true,
@@ -90,7 +90,7 @@ export const inputComponents = [
       showLabel: true,
       labelWidth: null,
       changeTag: true,
-      tag: 'el-input',
+      tag: 'a-input',
       tagIcon: 'password',
       defaultValue: undefined,
       layout: 'colFormItem',
@@ -121,7 +121,7 @@ export const inputComponents = [
       showLabel: true,
       changeTag: true,
       labelWidth: null,
-      tag: 'el-input-number',
+      tag: 'a-input-number',
       tagIcon: 'number',
       defaultValue: undefined,
       span: 24,
@@ -146,7 +146,7 @@ export const inputComponents = [
       showLabel: true,
       changeTag: true,
       labelWidth: null,
-      tag: 'tinymce',
+      tag: 'a-input',
       tagIcon: 'rich-text',
       defaultValue: null,
       span: 24,

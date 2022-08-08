@@ -1,45 +1,59 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-08 08:59:32
- * @LastEditTime: 2022-08-08 09:49:16
+ * @LastEditTime: 2022-08-08 18:50:38
  * @Description:
  */
-import { defineComponent } from 'vue';
-import Draggable from 'vuedraggable';
+import { defineComponent, h, resolveComponent } from 'vue';
 import { activeItem, copyItem, deleteItem, setDefaultValue } from '../useDrawing';
-
+import { CopyOutlined,DeleteOutlined } from '@ant-design/icons-vue';
 export default defineComponent({
-  setup() {
+  props: {
+    currentItem: {
+      type: Object,
+      default: () => {},
+    },
+    index: {
+      type: Number,
+      default: () => 0,
+    },
+  },
+  emits: ['itemDeleted', 'itemCopy'],
+  setup(props, { emit }) {
     const activeId = 1; //prop的
     const formConf: any = {};
+    interface ALayout {
+      colFormItem: Function;
+      rowFormItem: Function;
+      raw: Function;
+    }
     const components = {
       itemBtns(h: any, currentItem: any, index: number, list: any) {
-        // const { copyItem, deleteItem } = this.$listeners;
         return [
           <span
             class="drawing-item-copy"
             title="复制"
             onClick={(event) => {
-              copyItem(currentItem, list);
+              copyItem(currentItem, list, emit);
               event.stopPropagation();
             }}
           >
-            <i class="el-icon-copy-document" />
+            <CopyOutlined />
           </span>,
           <span
             class="drawing-item-delete"
             title="删除"
             onClick={(event) => {
-              deleteItem(index, list);
+              deleteItem(props.index, list, emit);
               event.stopPropagation();
             }}
           >
-            <i class="el-icon-delete" />
+            <DeleteOutlined />
           </span>,
         ];
       },
     };
-    const layouts = {
+    const layouts: ALayout = {
       colFormItem(h: any, currentItem: any, index: number, list: any) {
         const config = currentItem.__config__;
         const child = renderChildren(h, currentItem, index, list);
@@ -49,7 +63,7 @@ export default defineComponent({
         let labelWidth = config.labelWidth ? `${config.labelWidth}px` : null;
         if (config.showLabel === false) labelWidth = '0';
         return (
-          <el-col
+          <a-col
             span={config.span}
             class={className}
             nativeOnClick={(event: any) => {
@@ -57,34 +71,35 @@ export default defineComponent({
               event.stopPropagation();
             }}
           >
-            <el-form-item
+            <a-form-item
               label-width={labelWidth}
               label={config.showLabel ? config.label : ''}
               required={config.required}
             >
-              <render key={config.renderKey} conf={currentItem} onInput={setDefaultValue}>
+              {h(resolveComponent(config.tag))}
+              {/* <render key={config.renderKey} conf={currentItem} onInput={setDefaultValue}>
                 {child}
-              </render>
-            </el-form-item>
-            {components.itemBtns(h,currentItem,index,list)}
-          </el-col>
+              </render> */}
+            </a-form-item>
+            {components.itemBtns(h, currentItem, index, list)}
+          </a-col>
         );
       },
       rowFormItem(h: any, currentItem: any, index: number, list: any) {
         const config = currentItem.__config__;
         const className =
           activeId === config.formId ? 'drawing-row-item active-from-item' : 'drawing-row-item';
-        let child = renderChildren(h,currentItem,index,list)as any;
+        let child = renderChildren(h, currentItem, index, list) as any;
         if (currentItem.type === 'flex') {
           child = (
-            <el-row type={currentItem.type} justify={currentItem.justify} align={currentItem.align}>
+            <a-row type={currentItem.type} justify={currentItem.justify} align={currentItem.align}>
               {child}
-            </el-row>
+            </a-row>
           );
         }
         return (
-          <el-col span={config.span}>
-            <el-row
+          <a-col span={config.span}>
+            <a-row
               gutter={config.gutter}
               class={className}
               nativeOnClick={(event: any) => {
@@ -101,14 +116,14 @@ export default defineComponent({
               >
                 {child}
               </draggable>
-              {components.itemBtns(h,currentItem,index,list)}
-            </el-row>
-          </el-col>
+              {components.itemBtns(h, currentItem, index, list)}
+            </a-row>
+          </a-col>
         );
       },
       raw(h: any, currentItem: any, index: number, list: any) {
         const config = currentItem.__config__;
-        const child = renderChildren(h,currentItem,index,list);
+        const child = renderChildren(h, currentItem, index, list);
         return (
           <render key={config.renderKey} conf={currentItem} onInput={setDefaultValue}>
             {child}
@@ -117,20 +132,31 @@ export default defineComponent({
       },
     };
     function renderChildren(h: any, currentItem: any, index: any, list: any) {
-    //   const config = currentItem.__config__;
-    //   if (!Array.isArray(config.children)) return null;
-    //   return config.children.map((el: any, i: number) => {
-    //     const layout = layouts[el.__config__.layout];
-    //     if (layout) {
-    //       return layout.call(this, h, el, i, config.children);
-    //     }
-    //     return layoutIsNotFound.call(this);
-    //   });
+      const config = currentItem.__config__;
+      if (!Array.isArray(config?.children)) return null;
+      return config.children.map((el: any, i: number) => {
+        const lay = el.__config__.layout as any;
+        // @ts-ignorets-ignore
+        const layout = layouts[lay];
+        if (layout) {
+          return layout(h, el, i, config.children);
+        }
+        return layoutIsNotFound();
+      });
     }
 
-    // function layoutIsNotFound() {
-    //   throw new Error(`没有与${this.currentItem.__config__.layout}匹配的layout`);
-    // }
-    return () => <div>tsx</div>;
+    function layoutIsNotFound() {
+      throw new Error(`没有与${props.currentItem.__config__.layout}匹配的layout`);
+    }
+    const renderItem = () => {
+      //@ts-ignore
+      const layout = layouts[props.currentItem.__config__.layout];
+
+      if (layout) {
+        return layout(h, props.currentItem, 1, []);
+      }
+      return layoutIsNotFound.call(this);
+    };
+    return () => <div>{renderItem()}</div>;
   },
 });

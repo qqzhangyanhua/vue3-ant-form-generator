@@ -1,10 +1,19 @@
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import '../style/home.scss';
-import { DownloadOutlined,CopyOutlined,DeleteOutlined,RightCircleOutlined,EyeOutlined ,KeyOutlined} from '@ant-design/icons-vue';
+import {
+  DownloadOutlined,
+  CopyOutlined,
+  DeleteOutlined,
+  RightCircleOutlined,
+  EyeOutlined,
+  KeyOutlined,
+} from '@ant-design/icons-vue';
 import RightPanel from './RightPanel';
 import Draggable from 'vuedraggable';
-
+import DraggableItem from './component/DraggableItem';
+import JsonDrawer from './component/JsonDrawer';
 import { inputComponents, selectComponents, layoutComponents, formConf } from '../config/config';
+ import { cloneDeep } from 'lodash-es';
 export default defineComponent({
   name: 'App',
   setup() {
@@ -22,25 +31,40 @@ export default defineComponent({
         list: layoutComponents,
       },
     ]);
-   const drawingList = reactive([...inputComponents]);
+    const drawingList = reactive([...inputComponents]);
+    //复制单个
+    const handelItemDelete = (index: number) => {
+      console.log(index, drawingList);
+      drawingList.splice(index, 1);
+    };
+    // 拷贝单个
+    const handelItemCopy = (currentItem:any)=>{
+      const obj = cloneDeep(currentItem);
+      drawingList.push(obj);
+      console.log(currentItem)
+    }
     const handelRun = () => {
-      console.log('run',drawingList);
-      
-    }
-    const handelShowJson= ()=>{
+      console.log('run', drawingList);
+    };
+    const handelShowJson = () => {
       console.log('showJson');
-    }
-    const handelExport = ()=>{
+      showVisible.value = true;
+    };
+    const handelExport = () => {
       console.log('export');
-    }
-    const handelCopy = ()=>{
+    };
+    const handelCopy = () => {
       console.log('copy');
-    }
-    const handelDelete =()=>{
+    };
+    const handelDelete = () => {
       console.log('delete');
-    }
-    const addComponent = (component:any) => {
-    console.log('addComponent',component)
+    };
+    const addComponent = (component: any) => {
+      console.log('addComponent', component);
+    };
+    const showVisible = ref(false)
+    const closeJsonDrawer = ()=>{
+      showVisible.value = false;
     }
     return () => (
       <div class="container">
@@ -116,7 +140,7 @@ export default defineComponent({
           </div>
           <div class="center-scrollbar">
             <a-row class="center-board-row">
-              <a-form>
+              <a-form class="center-board-row-form">
                 <Draggable
                   class="drawing-board"
                   itemKey={'id'}
@@ -124,9 +148,15 @@ export default defineComponent({
                   animation={340}
                   group="componentsGroup"
                   v-slots={{
-                    item: ({ element }: any) => (
+                    item: ({ element, index }: any) => (
                       <div class="" onClick={addComponent.bind(this, element)}>
-                        <div class="">{element.__config__.label}</div>
+                        {/* <div class="">{element.__config__.label}</div> */}
+                        <DraggableItem
+                          currentItem={element}
+                          index={index}
+                          onItemDeleted={handelItemDelete}
+                          onItemCopy={handelItemCopy}
+                        />
                       </div>
                     ),
                   }}
@@ -138,7 +168,10 @@ export default defineComponent({
             </a-row>
           </div>
         </div>
+        {/* 右侧 */}
         <RightPanel />
+        {/* jsonDrawer */}
+        <JsonDrawer showVisible={showVisible.value} onCloseJsonDrawer={closeJsonDrawer} />
       </div>
     );
   },
