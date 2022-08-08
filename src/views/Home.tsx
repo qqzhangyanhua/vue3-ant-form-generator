@@ -1,13 +1,13 @@
 import { defineComponent, reactive } from 'vue';
-import { useStore } from 'vuex';
 import '../style/home.scss';
 import { DownloadOutlined,CopyOutlined,DeleteOutlined,RightCircleOutlined,EyeOutlined ,KeyOutlined} from '@ant-design/icons-vue';
 import RightPanel from './RightPanel';
+import Draggable from 'vuedraggable';
+
 import { inputComponents, selectComponents, layoutComponents, formConf } from '../config/config';
 export default defineComponent({
   name: 'App',
   setup() {
-    const store = useStore();
     const leftComponents = reactive([
       {
         title: '输入型组件',
@@ -22,9 +22,9 @@ export default defineComponent({
         list: layoutComponents,
       },
     ]);
-   const drawingList = reactive([]);
+   const drawingList = reactive([...inputComponents]);
     const handelRun = () => {
-      console.log('run');
+      console.log('run',drawingList);
       
     }
     const handelShowJson= ()=>{
@@ -56,11 +56,19 @@ export default defineComponent({
                     <KeyOutlined />
                     {item.title}
                   </div>
-                  {item.list.map((element) => (
-                    <div class="components-item" onClick={addComponent.bind(this, element)}>
-                      <div class="components-body">{element.__config__.label}</div>
-                    </div>
-                  ))}
+                  <Draggable
+                    itemKey={'id'}
+                    class="dragArea list-group"
+                    list={item.list}
+                    group={{ name: 'componentsGroup', pull: 'clone', put: false }}
+                    v-slots={{
+                      item: ({ element }: any) => (
+                        <div class="components-item" onClick={addComponent.bind(this, element)}>
+                          <div class="components-body">{element.__config__.label}</div>
+                        </div>
+                      ),
+                    }}
+                  ></Draggable>
                 </div>
               ))}
             </div>
@@ -109,7 +117,21 @@ export default defineComponent({
           <div class="center-scrollbar">
             <a-row class="center-board-row">
               <a-form>
-                <div v-show={drawingList.length==0} class="empty-info">
+                <Draggable
+                  class="drawing-board"
+                  itemKey={'id'}
+                  list={drawingList}
+                  animation={340}
+                  group="componentsGroup"
+                  v-slots={{
+                    item: ({ element }: any) => (
+                      <div class="" onClick={addComponent.bind(this, element)}>
+                        <div class="">{element.__config__.label}</div>
+                      </div>
+                    ),
+                  }}
+                />
+                <div v-show={drawingList.length == 0} class="empty-info">
                   从左侧拖入或点选组件进行表单设计
                 </div>
               </a-form>

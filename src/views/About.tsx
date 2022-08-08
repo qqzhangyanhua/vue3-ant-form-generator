@@ -25,8 +25,9 @@ export default defineComponent({
         console.log(val.draggedContext.element.id);
       };
       // 查看最新的数据
-      const handelChange = (e:any) => {
+      const onChangeCallback = (e: any) => {
         console.log(e);
+        console.log('list2', list2);
       };
     return () => (
       <>
@@ -51,6 +52,7 @@ export default defineComponent({
             list={list2}
             group="people"
             on-move={onMoveCallback}
+            onChange={onChangeCallback}
             v-slots={{
               item: ({ element }: any) => <div class="items">456 {element.name}</div>,
             }}

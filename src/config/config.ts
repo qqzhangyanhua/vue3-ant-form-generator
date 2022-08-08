@@ -1,7 +1,7 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-06 21:32:10
- * @LastEditTime: 2022-08-06 21:32:11
+ * @LastEditTime: 2022-08-08 08:57:03
  * @Description: 配置文件
  */
 
@@ -52,9 +52,11 @@ export const inputComponents = [
     maxlength: null,
     'show-word-limit': false,
     readonly: false,
-    disabled: false
+    disabled: false,
+    id:1
   },
   {
+    id:2,
     __config__: {
       label: '多行文本',
       labelWidth: null,
@@ -82,6 +84,7 @@ export const inputComponents = [
     disabled: false
   },
   {
+    id:3,
     __config__: {
       label: '密码',
       showLabel: true,
@@ -112,6 +115,7 @@ export const inputComponents = [
     disabled: false
   },
   {
+    id:4,
     __config__: {
       label: '计数器',
       showLabel: true,
@@ -136,6 +140,7 @@ export const inputComponents = [
     disabled: false
   },
   {
+    id:5,
     __config__: {
       label: '编辑器',
       showLabel: true,
@@ -159,6 +164,7 @@ export const inputComponents = [
 // 选择型组件 【左面板】
 export const selectComponents = [
   {
+    id: 11,
     __config__: {
       label: '下拉选择',
       showLabel: true,
@@ -170,25 +176,29 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/select'
+      document: 'https://element.eleme.cn/#/zh-CN/component/select',
     },
     __slot__: {
-      options: [{
-        label: '选项一',
-        value: 1
-      }, {
-        label: '选项二',
-        value: 2
-      }]
+      options: [
+        {
+          label: '选项一',
+          value: 1,
+        },
+        {
+          label: '选项二',
+          value: 2,
+        },
+      ],
     },
     placeholder: '请选择',
     style: { width: '100%' },
     clearable: true,
     disabled: false,
     filterable: false,
-    multiple: false
+    multiple: false,
   },
   {
+    id: 12,
     __config__: {
       label: '级联选择',
       url: 'https://www.fastmock.site/mock/f8d7a54fb1e60561e2f720d5a810009d/fg/cascaderList',
@@ -206,18 +216,22 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/cascader'
+      document: 'https://element.eleme.cn/#/zh-CN/component/cascader',
     },
-    options: [{
-      id: 1,
-      value: 1,
-      label: '选项1',
-      children: [{
-        id: 2,
-        value: 2,
-        label: '选项1-1'
-      }]
-    }],
+    options: [
+      {
+        id: 1,
+        value: 1,
+        label: '选项1',
+        children: [
+          {
+            id: 2,
+            value: 2,
+            label: '选项1-1',
+          },
+        ],
+      },
+    ],
     placeholder: '请选择',
     style: { width: '100%' },
     props: {
@@ -225,16 +239,17 @@ export const selectComponents = [
         multiple: false,
         label: 'label',
         value: 'value',
-        children: 'children'
-      }
+        children: 'children',
+      },
     },
     'show-all-levels': true,
     disabled: false,
     clearable: true,
     filterable: false,
-    separator: '/'
+    separator: '/',
   },
   {
+    id: 13,
     __config__: {
       label: '单选框组',
       labelWidth: null,
@@ -249,22 +264,26 @@ export const selectComponents = [
       regList: [],
       required: true,
       border: false,
-      document: 'https://element.eleme.cn/#/zh-CN/component/radio'
+      document: 'https://element.eleme.cn/#/zh-CN/component/radio',
     },
     __slot__: {
-      options: [{
-        label: '选项一',
-        value: 1
-      }, {
-        label: '选项二',
-        value: 2
-      }]
+      options: [
+        {
+          label: '选项一',
+          value: 1,
+        },
+        {
+          label: '选项二',
+          value: 2,
+        },
+      ],
     },
     style: {},
     size: 'medium',
-    disabled: false
+    disabled: false,
   },
   {
+    id: 14,
     __config__: {
       label: '多选框组',
       tag: 'el-checkbox-group',
@@ -279,24 +298,28 @@ export const selectComponents = [
       regList: [],
       changeTag: true,
       border: false,
-      document: 'https://element.eleme.cn/#/zh-CN/component/checkbox'
+      document: 'https://element.eleme.cn/#/zh-CN/component/checkbox',
     },
     __slot__: {
-      options: [{
-        label: '选项一',
-        value: 1
-      }, {
-        label: '选项二',
-        value: 2
-      }]
+      options: [
+        {
+          label: '选项一',
+          value: 1,
+        },
+        {
+          label: '选项二',
+          value: 2,
+        },
+      ],
     },
     style: {},
     size: 'medium',
     min: null,
     max: null,
-    disabled: false
+    disabled: false,
   },
   {
+    id: 15,
     __config__: {
       label: '开关',
       tag: 'el-switch',
@@ -309,7 +332,7 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/switch'
+      document: 'https://element.eleme.cn/#/zh-CN/component/switch',
     },
     style: {},
     disabled: false,
@@ -318,9 +341,10 @@ export const selectComponents = [
     'active-color': null,
     'inactive-color': null,
     'active-value': true,
-    'inactive-value': false
+    'inactive-value': false,
   },
   {
+    id: 16,
     __config__: {
       label: '滑块',
       tag: 'el-slider',
@@ -333,16 +357,17 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/slider'
+      document: 'https://element.eleme.cn/#/zh-CN/component/slider',
     },
     disabled: false,
     min: 0,
     max: 100,
     step: 1,
     'show-stops': false,
-    range: false
+    range: false,
   },
   {
+    id: 17,
     __config__: {
       label: '时间选择',
       tag: 'el-time-picker',
@@ -355,19 +380,20 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/time-picker'
+      document: 'https://element.eleme.cn/#/zh-CN/component/time-picker',
     },
     placeholder: '请选择',
     style: { width: '100%' },
     disabled: false,
     clearable: true,
     'picker-options': {
-      selectableRange: '00:00:00-23:59:59'
+      selectableRange: '00:00:00-23:59:59',
     },
     format: 'HH:mm:ss',
-    'value-format': 'HH:mm:ss'
+    'value-format': 'HH:mm:ss',
   },
   {
+    id: 18,
     __config__: {
       label: '时间范围',
       tag: 'el-time-picker',
@@ -380,7 +406,7 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/time-picker'
+      document: 'https://element.eleme.cn/#/zh-CN/component/time-picker',
     },
     style: { width: '100%' },
     disabled: false,
@@ -390,9 +416,10 @@ export const selectComponents = [
     'start-placeholder': '开始时间',
     'end-placeholder': '结束时间',
     format: 'HH:mm:ss',
-    'value-format': 'HH:mm:ss'
+    'value-format': 'HH:mm:ss',
   },
   {
+    id: 19,
     __config__: {
       label: '日期选择',
       tag: 'el-date-picker',
@@ -405,7 +432,7 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/date-picker'
+      document: 'https://element.eleme.cn/#/zh-CN/component/date-picker',
     },
     placeholder: '请选择',
     type: 'date',
@@ -414,9 +441,10 @@ export const selectComponents = [
     clearable: true,
     format: 'yyyy-MM-dd',
     'value-format': 'yyyy-MM-dd',
-    readonly: false
+    readonly: false,
   },
   {
+    id: 20,
     __config__: {
       label: '日期范围',
       tag: 'el-date-picker',
@@ -429,7 +457,7 @@ export const selectComponents = [
       layout: 'colFormItem',
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/date-picker'
+      document: 'https://element.eleme.cn/#/zh-CN/component/date-picker',
     },
     style: { width: '100%' },
     type: 'daterange',
@@ -440,9 +468,10 @@ export const selectComponents = [
     clearable: true,
     format: 'yyyy-MM-dd',
     'value-format': 'yyyy-MM-dd',
-    readonly: false
+    readonly: false,
   },
   {
+    id: 21,
     __config__: {
       label: '评分',
       tag: 'el-rate',
@@ -455,16 +484,17 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/rate'
+      document: 'https://element.eleme.cn/#/zh-CN/component/rate',
     },
     style: {},
     max: 5,
     'allow-half': false,
     'show-text': false,
     'show-score': false,
-    disabled: false
+    disabled: false,
   },
   {
+    id: 22,
     __config__: {
       label: '颜色选择',
       tag: 'el-color-picker',
@@ -477,14 +507,15 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/color-picker'
+      document: 'https://element.eleme.cn/#/zh-CN/component/color-picker',
     },
     'show-alpha': false,
     'color-format': '',
     disabled: false,
-    size: 'medium'
+    size: 'medium',
   },
   {
+    id: 23,
     __config__: {
       label: '上传',
       tag: 'el-upload',
@@ -501,10 +532,10 @@ export const selectComponents = [
       changeTag: true,
       fileSize: 2,
       sizeUnit: 'MB',
-      document: 'https://element.eleme.cn/#/zh-CN/component/upload'
+      document: 'https://element.eleme.cn/#/zh-CN/component/upload',
     },
     __slot__: {
-      'list-type': true
+      'list-type': true,
     },
     action: 'https://jsonplaceholder.typicode.com/posts/',
     disabled: false,
@@ -512,25 +543,27 @@ export const selectComponents = [
     name: 'file',
     'auto-upload': true,
     'list-type': 'text',
-    multiple: false
-  }
-]
+    multiple: false,
+  },
+];
 
 // 布局型组件 【左面板】
 export const layoutComponents = [
   {
+    id: 24,
     __config__: {
       layout: 'rowFormItem',
       tagIcon: 'row',
       label: '行容器',
       layoutTree: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/layout#row-attributes'
+      document: 'https://element.eleme.cn/#/zh-CN/component/layout#row-attributes',
     },
     type: 'default',
     justify: 'start',
-    align: 'top'
+    align: 'top',
   },
   {
+    id: 25,
     __config__: {
       label: '按钮',
       showLabel: true,
@@ -540,10 +573,10 @@ export const layoutComponents = [
       tagIcon: 'button',
       span: 24,
       layout: 'colFormItem',
-      document: 'https://element.eleme.cn/#/zh-CN/component/button'
+      document: 'https://element.eleme.cn/#/zh-CN/component/button',
     },
     __slot__: {
-      default: '主要按钮'
+      default: '主要按钮',
     },
     type: 'primary',
     icon: 'el-icon-search',
@@ -551,9 +584,10 @@ export const layoutComponents = [
     size: 'medium',
     plain: false,
     circle: false,
-    disabled: false
+    disabled: false,
   },
   {
+    id: 26,
     __config__: {
       layout: 'colFormItem',
       tagIcon: 'table',
@@ -572,65 +606,72 @@ export const layoutComponents = [
       dataPath: 'list',
       dataConsumer: 'data',
       url: 'https://www.fastmock.site/mock/f8d7a54fb1e60561e2f720d5a810009d/fg/tableData',
-      children: [{
-        __config__: {
-          layout: 'raw',
-          tag: 'el-table-column',
-          renderKey: 15957617660153
+      children: [
+        {
+          __config__: {
+            layout: 'raw',
+            tag: 'el-table-column',
+            renderKey: 15957617660153,
+          },
+          prop: 'date',
+          label: '日期',
         },
-        prop: 'date',
-        label: '日期'
-      }, {
-        __config__: {
-          layout: 'raw',
-          tag: 'el-table-column',
-          renderKey: 15957617660152
+        {
+          __config__: {
+            layout: 'raw',
+            tag: 'el-table-column',
+            renderKey: 15957617660152,
+          },
+          prop: 'address',
+          label: '地址',
         },
-        prop: 'address',
-        label: '地址'
-      }, {
-        __config__: {
-          layout: 'raw',
-          tag: 'el-table-column',
-          renderKey: 15957617660151
+        {
+          __config__: {
+            layout: 'raw',
+            tag: 'el-table-column',
+            renderKey: 15957617660151,
+          },
+          prop: 'name',
+          label: '名称',
         },
-        prop: 'name',
-        label: '名称'
-      }, {
-        __config__: {
-          layout: 'raw',
-          tag: 'el-table-column',
-          renderKey: 1595774496335,
-          children: [
-            {
-              __config__: {
-                label: '按钮',
-                tag: 'el-button',
-                tagIcon: 'button',
-                layout: 'raw',
-                renderKey: 1595779809901
+        {
+          __config__: {
+            layout: 'raw',
+            tag: 'el-table-column',
+            renderKey: 1595774496335,
+            children: [
+              {
+                __config__: {
+                  label: '按钮',
+                  tag: 'el-button',
+                  tagIcon: 'button',
+                  layout: 'raw',
+                  renderKey: 1595779809901,
+                },
+                __slot__: {
+                  default: '主要按钮',
+                },
+                type: 'primary',
+                icon: 'el-icon-search',
+                round: false,
+                size: 'medium',
               },
-              __slot__: {
-                default: '主要按钮'
-              },
-              type: 'primary',
-              icon: 'el-icon-search',
-              round: false,
-              size: 'medium'
-            }
-          ]
+            ],
+          },
+          label: '操作',
         },
-        label: '操作'
-      }]
+      ],
     },
     data: [],
-    directives: [{
-      name: 'loading',
-      value: true
-    }],
+    directives: [
+      {
+        name: 'loading',
+        value: true,
+      },
+    ],
     border: true,
     type: 'default',
     justify: 'start',
-    align: 'top'
-  }
-]
+    align: 'top',
+  },
+];
