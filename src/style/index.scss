@@ -140,3 +140,27 @@ input, textarea{
 .el-upload__tip{
   line-height: 1.2;
 }
+
+.form-drawers{
+  .ant-drawer-body{
+    padding: 0;
+    .ant-tabs-top{
+      background-color:#121315 ;
+    }
+    .ant-tabs-tab{
+      color: #888a8e;
+      background-color:#121315 ;
+
+    }
+  }
+}
+.form-drawer{
+  .ant-drawer-body{
+    padding: 0;
+
+  }
+}
+.form-drawer-container{
+  background-color:rgb(34, 186, 97,.6);
+  width: 100%;
+}

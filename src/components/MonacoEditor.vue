@@ -1,7 +1,7 @@
 <!--
  * @Author: ZYH
  * @Date: 2022-08-08 17:56:48
- * @LastEditTime: 2022-08-08 18:25:35
+ * @LastEditTime: 2022-08-09 08:52:44
  * @Description: 
 -->
 <template>
@@ -99,10 +99,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 .editor-area {
   position: relative;
-  border: 1px solid #ddd;
+  // border: 1px solid #ddd;
   border-radius: 4px;
   overflow: hidden;
-  padding: 5px;
+  // padding: 5px;
   padding-left: 0;
   background-color: #fff;
   box-sizing: border-box;

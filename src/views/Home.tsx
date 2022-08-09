@@ -12,6 +12,7 @@ import RightPanel from './RightPanel';
 import Draggable from 'vuedraggable';
 import DraggableItem from './component/DraggableItem';
 import JsonDrawer from './component/JsonDrawer';
+import FormDrawer from './component/FormDrawer';
 import { inputComponents, selectComponents, layoutComponents, formConf } from '../config/config';
  import { cloneDeep } from 'lodash-es';
 export default defineComponent({
@@ -40,11 +41,17 @@ export default defineComponent({
     // 拷贝单个
     const handelItemCopy = (currentItem:any)=>{
       const obj = cloneDeep(currentItem);
+      obj.id = new Date().getTime();
       drawingList.push(obj);
+
       console.log(currentItem)
     }
+    const showRunModel = ref(false)
+    const runType = ref('a');
+    const showFormDrawer = ref(false);
     const handelRun = () => {
       console.log('run', drawingList);
+      showFormDrawer.value = true;
     };
     const handelShowJson = () => {
       console.log('showJson');
@@ -102,7 +109,7 @@ export default defineComponent({
           <div class="action-bar">
             <a-button
               type="link"
-              onClick={handelRun}
+              onClick={() => (showRunModel.value = true)}
               v-slots={{ icon: () => <RightCircleOutlined /> }}
             >
               运行
@@ -172,6 +179,23 @@ export default defineComponent({
         <RightPanel />
         {/* jsonDrawer */}
         <JsonDrawer showVisible={showVisible.value} onCloseJsonDrawer={closeJsonDrawer} />
+        <FormDrawer showVisible={showFormDrawer.value} onCloseFormDrawer ={()=>showFormDrawer.value=false} />
+        {/* 生成的model */}
+        <a-modal
+          v-model={[showRunModel.value, 'visible']}
+          onOk={handelRun}
+          centered
+          cancelText="取消"
+          okText="确定"
+          title="请选择生成类型"
+        >
+          <a-form-item label="生成类型" required>
+            <a-radio-group size="large" v-model={[runType.value, 'value']}>
+              <a-radio-button value="a">页面</a-radio-button>
+              <a-radio-button value="b">弹框</a-radio-button>
+            </a-radio-group>
+          </a-form-item>
+        </a-modal>
       </div>
     );
   },

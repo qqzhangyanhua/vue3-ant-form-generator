@@ -1,7 +1,7 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-06 21:32:10
- * @LastEditTime: 2022-08-08 15:00:59
+ * @LastEditTime: 2022-08-09 09:30:50
  * @Description: 配置文件
  */
 
@@ -34,14 +34,14 @@ export const inputComponents = [
       required: true,
       layout: 'colFormItem',
       span: 24,
-      document: 'https://element.eleme.cn/#/zh-CN/component/input',
+      document: 'https://www.antdv.com/components/input-cn',
       // 正则校验规则
-      regList: []
+      regList: [],
     },
     // 组件的插槽属性
     __slot__: {
       prepend: '',
-      append: ''
+      append: '',
     },
     // 其余的为可直接写在组件标签上的属性
     placeholder: '请输入',
@@ -53,15 +53,15 @@ export const inputComponents = [
     'show-word-limit': false,
     readonly: false,
     disabled: false,
-    id:1
+    id: 1,
   },
   {
-    id:2,
+    id: 2,
     __config__: {
       label: '多行文本',
       labelWidth: null,
       showLabel: true,
-      tag: 'a-input',
+      tag: 'a-textarea',
       tagIcon: 'textarea',
       defaultValue: undefined,
       required: true,
@@ -69,39 +69,39 @@ export const inputComponents = [
       span: 24,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/input'
+      document: 'https://www.antdv.com/components/input-cn',
     },
     type: 'textarea',
     placeholder: '请输入',
     autosize: {
       minRows: 4,
-      maxRows: 4
+      maxRows: 4,
     },
     style: { width: '100%' },
     maxlength: null,
     'show-word-limit': false,
     readonly: false,
-    disabled: false
+    disabled: false,
   },
   {
-    id:3,
+    id: 3,
     __config__: {
       label: '密码',
       showLabel: true,
       labelWidth: null,
       changeTag: true,
-      tag: 'a-input',
+      tag: 'a-input-password',
       tagIcon: 'password',
       defaultValue: undefined,
       layout: 'colFormItem',
       span: 24,
       required: true,
       regList: [],
-      document: 'https://element.eleme.cn/#/zh-CN/component/input'
+      document: 'https://www.antdv.com/components/input-cn',
     },
     __slot__: {
       prepend: '',
-      append: ''
+      append: '',
     },
     placeholder: '请输入',
     'show-password': true,
@@ -112,10 +112,10 @@ export const inputComponents = [
     maxlength: null,
     'show-word-limit': false,
     readonly: false,
-    disabled: false
+    disabled: false,
   },
   {
-    id:4,
+    id: 4,
     __config__: {
       label: '计数器',
       showLabel: true,
@@ -128,7 +128,7 @@ export const inputComponents = [
       layout: 'colFormItem',
       required: true,
       regList: [],
-      document: 'https://element.eleme.cn/#/zh-CN/component/input-number'
+      document: 'https://www.antdv.com/components/input-number-cn',
     },
     placeholder: '',
     min: undefined,
@@ -137,10 +137,10 @@ export const inputComponents = [
     'step-strictly': false,
     precision: undefined,
     'controls-position': '',
-    disabled: false
+    disabled: false,
   },
   {
-    id:5,
+    id: 5,
     __config__: {
       label: '编辑器',
       showLabel: true,
@@ -153,13 +153,13 @@ export const inputComponents = [
       layout: 'colFormItem',
       required: true,
       regList: [],
-      document: 'http://tinymce.ax-z.cn'
+      document: 'http://tinymce.ax-z.cn',
     },
     placeholder: '请输入',
     height: 300, // 编辑器高度
-    branding: false // 隐藏右下角品牌烙印
-  }
-]
+    branding: false, // 隐藏右下角品牌烙印
+  },
+];
 
 // 选择型组件 【左面板】
 export const selectComponents = [
@@ -169,14 +169,14 @@ export const selectComponents = [
       label: '下拉选择',
       showLabel: true,
       labelWidth: null,
-      tag: 'el-select',
+      tag: 'a-select',
       tagIcon: 'select',
       layout: 'colFormItem',
       span: 24,
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/select',
+      document: 'https://www.antdv.com/components/select-cn',
     },
     __slot__: {
       options: [
@@ -207,7 +207,7 @@ export const selectComponents = [
       dataConsumer: 'options',
       showLabel: true,
       labelWidth: null,
-      tag: 'el-cascader',
+      tag: 'a-cascader',
       tagIcon: 'cascader',
       layout: 'colFormItem',
       defaultValue: [],
@@ -216,7 +216,7 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/cascader',
+      document: 'https://www.antdv.com/components/cascader-cn',
     },
     options: [
       {
@@ -254,7 +254,7 @@ export const selectComponents = [
       label: '单选框组',
       labelWidth: null,
       showLabel: true,
-      tag: 'el-radio-group',
+      tag: 'a-radio-group',
       tagIcon: 'radio',
       changeTag: true,
       defaultValue: undefined,
@@ -264,7 +264,7 @@ export const selectComponents = [
       regList: [],
       required: true,
       border: false,
-      document: 'https://element.eleme.cn/#/zh-CN/component/radio',
+      document: 'https://www.antdv.com/components/radio-cn',
     },
     __slot__: {
       options: [
@@ -286,7 +286,7 @@ export const selectComponents = [
     id: 14,
     __config__: {
       label: '多选框组',
-      tag: 'el-checkbox-group',
+      tag: 'a-checkbox-group',
       tagIcon: 'checkbox',
       defaultValue: [],
       span: 24,
@@ -298,7 +298,7 @@ export const selectComponents = [
       regList: [],
       changeTag: true,
       border: false,
-      document: 'https://element.eleme.cn/#/zh-CN/component/checkbox',
+      document: 'https://www.antdv.com/components/checkbox-cn',
     },
     __slot__: {
       options: [
@@ -322,7 +322,7 @@ export const selectComponents = [
     id: 15,
     __config__: {
       label: '开关',
-      tag: 'el-switch',
+      tag: 'a-switch',
       tagIcon: 'switch',
       defaultValue: false,
       span: 24,
@@ -332,7 +332,7 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/switch',
+      document: 'https://www.antdv.com/components/switch-cn',
     },
     style: {},
     disabled: false,
@@ -347,7 +347,7 @@ export const selectComponents = [
     id: 16,
     __config__: {
       label: '滑块',
-      tag: 'el-slider',
+      tag: 'a-slider',
       tagIcon: 'slider',
       defaultValue: null,
       span: 24,
@@ -357,7 +357,7 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/slider',
+      document: 'https://www.antdv.com/components/slider-cn',
     },
     disabled: false,
     min: 0,
@@ -370,7 +370,7 @@ export const selectComponents = [
     id: 17,
     __config__: {
       label: '时间选择',
-      tag: 'el-time-picker',
+      tag: 'a-time-picker',
       tagIcon: 'time',
       defaultValue: null,
       span: 24,
@@ -380,7 +380,7 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/time-picker',
+      document: 'https://www.antdv.com/components/time-picker-cn',
     },
     placeholder: '请选择',
     style: { width: '100%' },
@@ -396,7 +396,7 @@ export const selectComponents = [
     id: 18,
     __config__: {
       label: '时间范围',
-      tag: 'el-time-picker',
+      tag: 'a-time-picker',
       tagIcon: 'time-range',
       span: 24,
       showLabel: true,
@@ -406,7 +406,7 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/time-picker',
+      document: 'https://www.antdv.com/components/time-picker-cn',
     },
     style: { width: '100%' },
     disabled: false,
@@ -422,7 +422,7 @@ export const selectComponents = [
     id: 19,
     __config__: {
       label: '日期选择',
-      tag: 'el-date-picker',
+      tag: 'a-date-picker',
       tagIcon: 'date',
       defaultValue: null,
       showLabel: true,
@@ -432,7 +432,7 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/date-picker',
+      document: 'https://www.antdv.com/components/date-picker-cn',
     },
     placeholder: '请选择',
     type: 'date',
@@ -457,7 +457,7 @@ export const selectComponents = [
       layout: 'colFormItem',
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/date-picker',
+      document: 'https://www.antdv.com/components/date-picker-cn',
     },
     style: { width: '100%' },
     type: 'daterange',
@@ -474,7 +474,7 @@ export const selectComponents = [
     id: 21,
     __config__: {
       label: '评分',
-      tag: 'el-rate',
+      tag: 'a-rate',
       tagIcon: 'rate',
       defaultValue: 0,
       span: 24,
@@ -484,7 +484,7 @@ export const selectComponents = [
       required: true,
       regList: [],
       changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/rate',
+      document: 'https://www.antdv.com/components/rate-cn',
     },
     style: {},
     max: 5,
@@ -493,32 +493,12 @@ export const selectComponents = [
     'show-score': false,
     disabled: false,
   },
-  {
-    id: 22,
-    __config__: {
-      label: '颜色选择',
-      tag: 'el-color-picker',
-      tagIcon: 'color',
-      span: 24,
-      defaultValue: null,
-      showLabel: true,
-      labelWidth: null,
-      layout: 'colFormItem',
-      required: true,
-      regList: [],
-      changeTag: true,
-      document: 'https://element.eleme.cn/#/zh-CN/component/color-picker',
-    },
-    'show-alpha': false,
-    'color-format': '',
-    disabled: false,
-    size: 'medium',
-  },
+
   {
     id: 23,
     __config__: {
       label: '上传',
-      tag: 'el-upload',
+      tag: 'a-upload',
       tagIcon: 'upload',
       layout: 'colFormItem',
       defaultValue: null,
@@ -532,7 +512,7 @@ export const selectComponents = [
       changeTag: true,
       fileSize: 2,
       sizeUnit: 'MB',
-      document: 'https://element.eleme.cn/#/zh-CN/component/upload',
+      document: 'https://www.antdv.com/components/upload-cn',
     },
     __slot__: {
       'list-type': true,
@@ -569,11 +549,11 @@ export const layoutComponents = [
       showLabel: true,
       changeTag: true,
       labelWidth: null,
-      tag: 'el-button',
+      tag: 'a-button',
       tagIcon: 'button',
       span: 24,
       layout: 'colFormItem',
-      document: 'https://element.eleme.cn/#/zh-CN/component/button',
+      document: 'https://www.antdv.com/components/button-cn',
     },
     __slot__: {
       default: '主要按钮',
@@ -591,8 +571,8 @@ export const layoutComponents = [
     __config__: {
       layout: 'colFormItem',
       tagIcon: 'table',
-      tag: 'el-table',
-      document: 'https://element.eleme.cn/#/zh-CN/component/table',
+      tag: 'a-table',
+      document: 'https://www.antdv.com/components/table-cn',
       span: 24,
       formId: 101,
       renderKey: 1595761764203,
