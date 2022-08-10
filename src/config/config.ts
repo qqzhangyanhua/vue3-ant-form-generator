@@ -1,7 +1,7 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-06 21:32:10
- * @LastEditTime: 2022-08-09 09:30:50
+ * @LastEditTime: 2022-08-10 09:35:29
  * @Description: 配置文件
  */
 
@@ -44,7 +44,8 @@ export const inputComponents = [
       append: '',
     },
     // 其余的为可直接写在组件标签上的属性
-    placeholder: '请输入',
+    componentProps:{
+  placeholder: '请输入',
     style: { width: '100%' },
     clearable: true,
     'prefix-icon': '',
@@ -53,10 +54,11 @@ export const inputComponents = [
     'show-word-limit': false,
     readonly: false,
     disabled: false,
-    id: 1,
+    },
+    id: '1',
   },
   {
-    id: 2,
+    id: '2',
     __config__: {
       label: '多行文本',
       labelWidth: null,
@@ -71,20 +73,18 @@ export const inputComponents = [
       changeTag: true,
       document: 'https://www.antdv.com/components/input-cn',
     },
-    type: 'textarea',
-    placeholder: '请输入',
-    autosize: {
-      minRows: 4,
-      maxRows: 4,
+    componentProps: {
+      type: 'textarea',
+      placeholder: '请输入',
+      style: { width: '100%' },
+      maxlength: null,
+      'show-word-limit': false,
+      readonly: false,
+      disabled: false,
     },
-    style: { width: '100%' },
-    maxlength: null,
-    'show-word-limit': false,
-    readonly: false,
-    disabled: false,
   },
   {
-    id: 3,
+    id: '3',
     __config__: {
       label: '密码',
       showLabel: true,
@@ -103,19 +103,21 @@ export const inputComponents = [
       prepend: '',
       append: '',
     },
-    placeholder: '请输入',
-    'show-password': true,
-    style: { width: '100%' },
-    clearable: true,
-    'prefix-icon': '',
-    'suffix-icon': '',
-    maxlength: null,
-    'show-word-limit': false,
-    readonly: false,
-    disabled: false,
+    componentProps: {
+      placeholder: '请输入',
+      'show-password': true,
+      style: { width: '100%' },
+      clearable: true,
+      'prefix-icon': '',
+      'suffix-icon': '',
+      maxlength: null,
+      'show-word-limit': false,
+      readonly: false,
+      disabled: false,
+    },
   },
   {
-    id: 4,
+    id: '4',
     __config__: {
       label: '计数器',
       showLabel: true,
@@ -130,17 +132,19 @@ export const inputComponents = [
       regList: [],
       document: 'https://www.antdv.com/components/input-number-cn',
     },
-    placeholder: '',
-    min: undefined,
-    max: undefined,
-    step: 1,
-    'step-strictly': false,
-    precision: undefined,
-    'controls-position': '',
-    disabled: false,
+    componentProps: {
+      placeholder: '',
+      min: undefined,
+      max: undefined,
+      step: 1,
+      'step-strictly': false,
+      precision: undefined,
+      'controls-position': '',
+      disabled: false,
+    },
   },
   {
-    id: 5,
+    id: '5',
     __config__: {
       label: '编辑器',
       showLabel: true,
@@ -155,9 +159,11 @@ export const inputComponents = [
       regList: [],
       document: 'http://tinymce.ax-z.cn',
     },
-    placeholder: '请输入',
-    height: 300, // 编辑器高度
-    branding: false, // 隐藏右下角品牌烙印
+    componentProps: {
+      placeholder: '请输入',
+      height: 300, // 编辑器高度
+      branding: false, // 隐藏右下角品牌烙印
+    },
   },
 ];
 

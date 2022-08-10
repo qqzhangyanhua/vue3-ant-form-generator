@@ -1,7 +1,7 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-08 16:42:18
- * @LastEditTime: 2022-08-08 20:37:26
+ * @LastEditTime: 2022-08-10 07:02:49
  * @Description:
  */
 
@@ -17,6 +17,10 @@ export default defineComponent({
     showVisible: {
       type: Boolean,
       default: false,
+    },
+    jsonList: {
+      type: String,
+      default: '',
     },
   },
   component: {
@@ -36,10 +40,9 @@ export default defineComponent({
     const showModel = ref(false);
     const fileName = ref(`${+new Date()}.json`);
     const editorData = `{
-        "a":1,
-        "b":2
-    }`;
+        "a":1,"b":2}`;
     const handelCopy = async () => {
+      console.log('drawingList', props.jsonList);
       try {
         await toClipboard(editorData);
         message.success('复制成功！');

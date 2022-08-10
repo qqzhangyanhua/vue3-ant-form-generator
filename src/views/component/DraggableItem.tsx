@@ -1,7 +1,7 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-08 08:59:32
- * @LastEditTime: 2022-08-08 18:50:38
+ * @LastEditTime: 2022-08-10 09:35:42
  * @Description:
  */
 import { defineComponent, h, resolveComponent } from 'vue';
@@ -76,7 +76,7 @@ export default defineComponent({
               label={config.showLabel ? config.label : ''}
               required={config.required}
             >
-              {h(resolveComponent(config.tag))}
+              {h(resolveComponent(config.tag),{...currentItem.componentProps})}
               {/* <render key={config.renderKey} conf={currentItem} onInput={setDefaultValue}>
                 {child}
               </render> */}

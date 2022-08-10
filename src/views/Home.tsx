@@ -14,7 +14,7 @@ import DraggableItem from './component/DraggableItem';
 import JsonDrawer from './component/JsonDrawer';
 import FormDrawer from './component/FormDrawer';
 import { inputComponents, selectComponents, layoutComponents, formConf } from '../config/config';
- import { cloneDeep } from 'lodash-es';
+import { cloneDeep } from 'lodash-es';
 export default defineComponent({
   name: 'App',
   setup() {
@@ -32,29 +32,33 @@ export default defineComponent({
         list: layoutComponents,
       },
     ]);
-    const drawingList = reactive([...inputComponents]);
+    const drawingList = reactive(cloneDeep([...inputComponents]));
+    const activeData = ref(drawingList[0]);
+    const formConfigs = ref(formConf);
     //复制单个
     const handelItemDelete = (index: number) => {
       console.log(index, drawingList);
       drawingList.splice(index, 1);
     };
     // 拷贝单个
-    const handelItemCopy = (currentItem:any)=>{
+    const handelItemCopy = (currentItem: any) => {
       const obj = cloneDeep(currentItem);
       obj.id = new Date().getTime();
       drawingList.push(obj);
 
-      console.log(currentItem)
-    }
-    const showRunModel = ref(false)
+      console.log(currentItem);
+    };
+    const showRunModel = ref(false);
     const runType = ref('a');
     const showFormDrawer = ref(false);
     const handelRun = () => {
       console.log('run', drawingList);
       showFormDrawer.value = true;
     };
+    const jsonList = ref('');
     const handelShowJson = () => {
-      console.log('showJson');
+      console.log('show', drawingList);
+      jsonList.value = JSON.stringify({ fields: drawingList });
       showVisible.value = true;
     };
     const handelExport = () => {
@@ -68,11 +72,12 @@ export default defineComponent({
     };
     const addComponent = (component: any) => {
       console.log('addComponent', component);
+      activeData.value = component;
     };
-    const showVisible = ref(false)
-    const closeJsonDrawer = ()=>{
+    const showVisible = ref(false);
+    const closeJsonDrawer = () => {
       showVisible.value = false;
-    }
+    };
     return () => (
       <div class="container">
         <div class="left-board">
@@ -176,10 +181,17 @@ export default defineComponent({
           </div>
         </div>
         {/* 右侧 */}
-        <RightPanel />
+        <RightPanel activeData={activeData.value} formConfigs={formConfigs.value} />
         {/* jsonDrawer */}
-        <JsonDrawer showVisible={showVisible.value} onCloseJsonDrawer={closeJsonDrawer} />
-        <FormDrawer showVisible={showFormDrawer.value} onCloseFormDrawer ={()=>showFormDrawer.value=false} />
+        <JsonDrawer
+          showVisible={showVisible.value}
+          onCloseJsonDrawer={closeJsonDrawer}
+          jsonList={jsonList.value}
+        />
+        <FormDrawer
+          showVisible={showFormDrawer.value}
+          onCloseFormDrawer={() => (showFormDrawer.value = false)}
+        />
         {/* 生成的model */}
         <a-modal
           v-model={[showRunModel.value, 'visible']}

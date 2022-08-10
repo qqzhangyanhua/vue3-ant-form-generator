@@ -1,12 +1,22 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-06 18:21:09
- * @LastEditTime: 2022-08-06 20:25:31
+ * @LastEditTime: 2022-08-10 07:21:14
  * @Description:
  */
 import { defineComponent } from 'vue';
 export default defineComponent({
-  setup() {
+  props: {
+    activeData: {
+      type: Object,
+      default: () => {},
+    },
+    formConfigs: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  setup(props) {
     return () => (
       <div>
         <a-form labelCol={{ style: { width: '80px' } }} wrapperCol={{ span: 14 }}>
