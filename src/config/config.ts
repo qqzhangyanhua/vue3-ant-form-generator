@@ -1,7 +1,7 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-06 21:32:10
- * @LastEditTime: 2022-08-10 09:35:29
+ * @LastEditTime: 2022-08-11 08:43:22
  * @Description: 配置文件
  */
 
@@ -33,7 +33,7 @@ export const inputComponents = [
       defaultValue: undefined,
       required: true,
       layout: 'colFormItem',
-      span: 24,
+      span: 10,
       document: 'https://www.antdv.com/components/input-cn',
       // 正则校验规则
       regList: [],
@@ -68,7 +68,7 @@ export const inputComponents = [
       defaultValue: undefined,
       required: true,
       layout: 'colFormItem',
-      span: 24,
+      span: 4,
       regList: [],
       changeTag: true,
       document: 'https://www.antdv.com/components/input-cn',

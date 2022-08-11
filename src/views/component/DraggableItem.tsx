@@ -1,12 +1,12 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-08 08:59:32
- * @LastEditTime: 2022-08-10 09:35:42
+ * @LastEditTime: 2022-08-11 08:59:01
  * @Description:
  */
 import { defineComponent, h, resolveComponent } from 'vue';
 import { activeItem, copyItem, deleteItem, setDefaultValue } from '../useDrawing';
-import { CopyOutlined,DeleteOutlined } from '@ant-design/icons-vue';
+import { CopyOutlined, DeleteOutlined } from '@ant-design/icons-vue';
 export default defineComponent({
   props: {
     currentItem: {
@@ -18,7 +18,7 @@ export default defineComponent({
       default: () => 0,
     },
   },
-  emits: ['itemDeleted', 'itemCopy'],
+  emits: ['itemDeleted', 'itemCopy','click'],
   setup(props, { emit }) {
     const activeId = 1; //prop的
     const formConf: any = {};
@@ -63,26 +63,19 @@ export default defineComponent({
         let labelWidth = config.labelWidth ? `${config.labelWidth}px` : null;
         if (config.showLabel === false) labelWidth = '0';
         return (
-          <a-col
-            span={config.span}
-            class={className}
-            nativeOnClick={(event: any) => {
-              activeItem(currentItem);
-              event.stopPropagation();
-            }}
-          >
+          <>
             <a-form-item
               label-width={labelWidth}
               label={config.showLabel ? config.label : ''}
               required={config.required}
             >
-              {h(resolveComponent(config.tag),{...currentItem.componentProps})}
+              {h(resolveComponent(config.tag), { ...currentItem.componentProps })}
               {/* <render key={config.renderKey} conf={currentItem} onInput={setDefaultValue}>
                 {child}
               </render> */}
             </a-form-item>
             {components.itemBtns(h, currentItem, index, list)}
-          </a-col>
+          </>
         );
       },
       rowFormItem(h: any, currentItem: any, index: number, list: any) {
@@ -157,6 +150,18 @@ export default defineComponent({
       }
       return layoutIsNotFound.call(this);
     };
-    return () => <div>{renderItem()}</div>;
+    const handelClick = (val:any)=>{
+      console.log('dasdsd')
+    }
+    const config = props.currentItem.__config__;
+    let className = activeId === config.formId ? 'drawing-item active-from-item' : 'drawing-item';
+    return () => (
+      <a-col
+        span={config.span}
+        class={className}
+      >
+        {renderItem()}
+      </a-col>
+    );
   },
 });

@@ -161,15 +161,13 @@ export default defineComponent({
                   group="componentsGroup"
                   v-slots={{
                     item: ({ element, index }: any) => (
-                      <div class="" onClick={addComponent.bind(this, element)}>
-                        {/* <div class="">{element.__config__.label}</div> */}
-                        <DraggableItem
-                          currentItem={element}
-                          index={index}
-                          onItemDeleted={handelItemDelete}
-                          onItemCopy={handelItemCopy}
-                        />
-                      </div>
+                      <DraggableItem
+                        onClick={addComponent.bind(this, element)}
+                        currentItem={element}
+                        index={index}
+                        onItemDeleted={handelItemDelete}
+                        onItemCopy={handelItemCopy}
+                      />
                     ),
                   }}
                 />
