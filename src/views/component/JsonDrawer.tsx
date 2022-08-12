@@ -1,7 +1,7 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-08 16:42:18
- * @LastEditTime: 2022-08-11 10:22:21
+ * @LastEditTime: 2022-08-11 19:50:19
  * @Description:
  */
 
@@ -30,6 +30,7 @@ export default defineComponent({
   emits: ['closeJsonDrawer'],
   setup(props, { emit }) {
     let beautifier: any;
+    let monaco:any
     const { toClipboard } = useClipboard();
     const visible = computed({
       get() {
