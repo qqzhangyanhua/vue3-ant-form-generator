@@ -1,7 +1,7 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-08 08:59:32
- * @LastEditTime: 2022-08-11 08:59:01
+ * @LastEditTime: 2022-08-15 09:04:28
  * @Description:
  */
 import { defineComponent, h, resolveComponent } from 'vue';
@@ -18,7 +18,7 @@ export default defineComponent({
       default: () => 0,
     },
   },
-  emits: ['itemDeleted', 'itemCopy','click'],
+  emits: ['itemDeleted', 'itemCopy','currentClick'],
   setup(props, { emit }) {
     const activeId = 1; //prop的
     const formConf: any = {};
@@ -68,6 +68,7 @@ export default defineComponent({
               label-width={labelWidth}
               label={config.showLabel ? config.label : ''}
               required={config.required}
+              onClick={handelClick.bind(this, currentItem)}
             >
               {h(resolveComponent(config.tag), { ...currentItem.componentProps })}
               {/* <render key={config.renderKey} conf={currentItem} onInput={setDefaultValue}>
@@ -151,7 +152,7 @@ export default defineComponent({
       return layoutIsNotFound.call(this);
     };
     const handelClick = (val:any)=>{
-      console.log('dasdsd')
+      emit('currentClick',val);
     }
     const config = props.currentItem.__config__;
     let className = activeId === config.formId ? 'drawing-item active-from-item' : 'drawing-item';

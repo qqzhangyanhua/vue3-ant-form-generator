@@ -162,7 +162,7 @@ export default defineComponent({
                   v-slots={{
                     item: ({ element, index }: any) => (
                       <DraggableItem
-                        onClick={addComponent.bind(this, element)}
+                        onCurrentClick={addComponent}
                         currentItem={element}
                         index={index}
                         onItemDeleted={handelItemDelete}
