@@ -15,6 +15,7 @@ import JsonDrawer from './component/JsonDrawer';
 import FormDrawer from './component/FormDrawer';
 import { inputComponents, selectComponents, layoutComponents, formConf } from '../config/config';
 import { cloneDeep } from 'lodash-es';
+import { makeUpHtml } from '../components/generator/html';
 export default defineComponent({
   name: 'App',
   setup() {
@@ -35,6 +36,10 @@ export default defineComponent({
     const drawingList = reactive(cloneDeep([...inputComponents]));
     const activeData = ref(drawingList[0]);
     const formConfigs = ref(formConf);
+    const formData = reactive({
+      ...formConf,
+      fields: cloneDeep(drawingList),
+    });
     //复制单个
     const handelItemDelete = (index: number) => {
       console.log(index, drawingList);
@@ -52,7 +57,8 @@ export default defineComponent({
     const runType = ref('a');
     const showFormDrawer = ref(false);
     const handelRun = () => {
-      console.log('run', drawingList);
+      const val = makeUpHtml(formData, 'dialog');
+      console.log('run==============',val,);
       showFormDrawer.value = true;
     };
     const jsonList = ref('');
