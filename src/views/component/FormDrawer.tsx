@@ -1,7 +1,7 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-08 16:42:18
- * @LastEditTime: 2022-08-09 09:00:30
+ * @LastEditTime: 2022-08-28 23:25:34
  * @Description:
  */
 
@@ -18,6 +18,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    editorData:{
+      type:String,
+      default:''
+    }
   },
   component: {
     MonacoEditor,
@@ -36,13 +40,13 @@ export default defineComponent({
     const showModel = ref(false);
     const activeKey = ref('1');
     const fileName = ref(`${+new Date()}.json`);
-    const editorData = `{
-        "a":1,
-        "b":2
-    }`;
+    // const editorData = `{
+    //     "a":1,
+    //     "b":2
+    // }`;
     const handelCopy = async () => {
       try {
-        await toClipboard(editorData);
+        await toClipboard(props.editorData);
         message.success('复制成功！');
       } catch (e) {
         console.error(e);
@@ -51,10 +55,13 @@ export default defineComponent({
     const handelExport = () => {
       showModel.value = true;
     };
+    const handelTabChange = (e:string)=>{
+      console.log('eeeee',e)
+    }
     const handelCloseModel = () => {
       console.log('eeee', fileName.value);
       if (!fileName.value) fileName.value = `${+new Date()}.json`;
-      const codeStr = editorData;
+      const codeStr = props.editorData;
       const blob = new Blob([codeStr], { type: 'text/plain;charset=utf-8' });
       saveAs(blob, fileName.value);
       showModel.value = false;
@@ -74,13 +81,13 @@ export default defineComponent({
             closable={false}
             width="50%"
           >
-            <a-tabs v-model={[activeKey.value, 'activeKey']} type="card">
+            <a-tabs v-model={[activeKey.value, 'activeKey']} type="card" onChange={handelTabChange}>
               <a-tab-pane key="1" tab="template"></a-tab-pane>
               <a-tab-pane key="2" tab="script" force-render></a-tab-pane>
               <a-tab-pane key="3" tab="css"></a-tab-pane>
             </a-tabs>
             {/*  @ts-ignore */}
-            <MonacoEditor height="800px" modelValue={editorData} language="json" />
+            <MonacoEditor height="800px" modelValue={props.editorData} language="json" />
           </a-drawer>
           <a-drawer
             class="form-drawer"
@@ -91,7 +98,7 @@ export default defineComponent({
             width="50%"
           >
             <div>
-              <a-space class='form-drawer-container'>
+              <a-space class="form-drawer-container">
                 <a-button
                   type="link"
                   onClick={handelCopy}

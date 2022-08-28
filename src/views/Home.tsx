@@ -40,6 +40,7 @@ export default defineComponent({
       ...formConf,
       fields: cloneDeep(drawingList),
     });
+    const editorData = ref('')
     //复制单个
     const handelItemDelete = (index: number) => {
       console.log(index, drawingList);
@@ -58,7 +59,7 @@ export default defineComponent({
     const showFormDrawer = ref(false);
     const handelRun = () => {
       const val = makeUpHtml(formData, 'dialog');
-      console.log('run==============',val,);
+      editorData.value = val;
       showFormDrawer.value = true;
     };
     const jsonList = ref('');
@@ -194,6 +195,7 @@ export default defineComponent({
         />
         <FormDrawer
           showVisible={showFormDrawer.value}
+          editorData={editorData.value}
           onCloseFormDrawer={() => (showFormDrawer.value = false)}
         />
         {/* 生成的model */}
