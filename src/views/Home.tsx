@@ -16,6 +16,7 @@ import FormDrawer from './component/FormDrawer';
 import { inputComponents, selectComponents, layoutComponents, formConf } from '../config/config';
 import { cloneDeep } from 'lodash-es';
 import { makeUpHtml } from '../components/generator/html';
+
 export default defineComponent({
   name: 'App',
   setup() {
@@ -59,6 +60,8 @@ export default defineComponent({
     const showFormDrawer = ref(false);
     const handelRun = () => {
       const val = makeUpHtml(formData, 'dialog');
+      const jsVal = makeUpJs(formData, 'dialog');
+      
       editorData.value = val;
       showFormDrawer.value = true;
     };

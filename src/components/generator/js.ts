@@ -1,5 +1,6 @@
-import { isArray } from 'util';
-import { exportDefault, titleCase, deepClone } from '@/utils/index';
+import { cloneDeep } from 'lodash-es';
+
+import { exportDefault, titleCase, isArray } from '../../utils/index';
 import ruleTrigger from './ruleTrigger';
 
 const units = {
@@ -7,7 +8,7 @@ const units = {
   MB: '1024 / 1024',
   GB: '1024 / 1024 / 1024',
 };
-let confGlobal:any;
+let confGlobal: any;
 const inheritAttrs = {
   file: '',
   dialog: 'inheritAttrs: false,',
@@ -18,17 +19,17 @@ const inheritAttrs = {
  * @param {Object} formConfig 整个表单配置
  * @param {String} type 生成类型，文件或弹窗等
  */
-export function makeUpJs(formConfig, type) {
-  confGlobal = formConfig = deepClone(formConfig);
-  const dataList = [];
-  const ruleList = [];
-  const optionsList = [];
-  const propsList = [];
+export function makeUpJs(formConfig: any, type: string) {
+  confGlobal = formConfig = cloneDeep(formConfig);
+  const dataList: any = [];
+  const ruleList: any = [];
+  const optionsList: any = [];
+  const propsList: any = [];
   const methodList = mixinMethod(type);
-  const uploadVarList = [];
-  const created = [];
+  const uploadVarList: any = [];
+  const created: any = [];
 
-  formConfig.fields.forEach((el) => {
+  formConfig.fields.forEach((el: any) => {
     buildAttributes(
       el,
       dataList,
@@ -58,14 +59,14 @@ export function makeUpJs(formConfig, type) {
 
 // 构建组件属性
 function buildAttributes(
-  scheme,
-  dataList,
-  ruleList,
-  optionsList,
-  methodList,
-  propsList,
-  uploadVarList,
-  created,
+  scheme:any,
+  dataList:any,
+  ruleList:any,
+  optionsList:any,
+  methodList:any,
+  propsList:any,
+  uploadVarList:any,
+  created:any,
 ) {
   const config = scheme.__config__;
   const slot = scheme.__slot__;
@@ -104,7 +105,7 @@ function buildAttributes(
 
   // 构建子级组件属性
   if (config.children) {
-    config.children.forEach((item) => {
+    config.children.forEach((item:any) => {
       buildAttributes(
         item,
         dataList,
@@ -120,13 +121,13 @@ function buildAttributes(
 }
 
 // 在Created调用函数
-function callInCreated(methodName, created) {
+function callInCreated(methodName:any, created:any) {
   created.push(`this.${methodName}()`);
 }
 
 // 混入处理函数
-function mixinMethod(type) {
-  const list = [];
+function mixinMethod(type:any) {
+  const list:any = [];
   const minxins = {
     file: confGlobal.formBtns
       ? {
@@ -157,7 +158,7 @@ function mixinMethod(type) {
       },`,
     },
   };
-
+//@ts-ignore
   const methods = minxins[type];
   if (methods) {
     Object.keys(methods).forEach((key) => {
@@ -169,7 +170,7 @@ function mixinMethod(type) {
 }
 
 // 构建data
-function buildData(scheme, dataList) {
+function buildData(scheme:any, dataList:any) {
   const config = scheme.__config__;
   if (scheme.__vModel__ === undefined) return;
   const defaultValue = JSON.stringify(config.defaultValue);
@@ -177,10 +178,11 @@ function buildData(scheme, dataList) {
 }
 
 // 构建校验规则
-function buildRules(scheme, ruleList) {
+function buildRules(scheme:any, ruleList:any) {
   const config = scheme.__config__;
   if (scheme.__vModel__ === undefined) return;
   const rules = [];
+  // @ts-ignore
   if (ruleTrigger[config.tag]) {
     if (config.required) {
       const type = isArray(config.defaultValue) ? "type: 'array'," : '';

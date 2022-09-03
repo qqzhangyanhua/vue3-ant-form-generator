@@ -1,9 +1,22 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-11 09:58:05
- * @LastEditTime: 2022-08-11 09:58:05
+ * @LastEditTime: 2022-09-03 08:50:01
  * @Description: 
  */
+
+// 首字母大小
+export function titleCase(str:string) {
+  return str.replace(/( |^)[a-z]/g, L => L.toUpperCase())
+}
+export const exportDefault = 'export default ';
+export const isArray=(value:any)=>{
+  return Array.isArray(value)
+}
+// 下划转驼峰
+export function camelCase(str:string) {
+  return str.replace(/-[a-z]/g, str1 => str1.substr(-1).toUpperCase())
+}
 export const beautifierConf = {
   html: {
     indent_size: '2',
