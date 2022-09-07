@@ -195,7 +195,7 @@ function buildRules(scheme:any, ruleList:any) {
       );
     }
     if (config.regList && isArray(config.regList)) {
-      config.regList.forEach((item) => {
+      config.regList.forEach((item:any) => {
         if (item.pattern) {
           rules.push(
             `{ pattern: ${eval(item.pattern)}, message: '${item.message}', trigger: '${
@@ -210,7 +210,7 @@ function buildRules(scheme:any, ruleList:any) {
 }
 
 // 构建options
-function buildOptions(scheme, optionsList) {
+function buildOptions(scheme:any, optionsList:any) {
   if (scheme.__vModel__ === undefined) return;
   // el-cascader直接有options属性，其他组件都是定义在slot中，所以有两处判断
   let { options } = scheme;

@@ -16,6 +16,8 @@ import FormDrawer from './component/FormDrawer';
 import { inputComponents, selectComponents, layoutComponents, formConf } from '../config/config';
 import { cloneDeep } from 'lodash-es';
 import { makeUpHtml } from '../components/generator/html';
+import { makeUpJs } from '../components/generator/js';
+
 
 export default defineComponent({
   name: 'App',
@@ -42,6 +44,8 @@ export default defineComponent({
       fields: cloneDeep(drawingList),
     });
     const editorData = ref('')
+    const editorJsData = ref('');
+
     //复制单个
     const handelItemDelete = (index: number) => {
       console.log(index, drawingList);
@@ -61,8 +65,9 @@ export default defineComponent({
     const handelRun = () => {
       const val = makeUpHtml(formData, 'dialog');
       const jsVal = makeUpJs(formData, 'dialog');
-      
+      console.log('jsval==================',jsVal)
       editorData.value = val;
+      editorJsData.value = jsVal;
       showFormDrawer.value = true;
     };
     const jsonList = ref('');
@@ -199,6 +204,7 @@ export default defineComponent({
         <FormDrawer
           showVisible={showFormDrawer.value}
           editorData={editorData.value}
+          editorJsData={editorJsData.value}
           onCloseFormDrawer={() => (showFormDrawer.value = false)}
         />
         {/* 生成的model */}

@@ -1,7 +1,7 @@
 /*
  * @Author: ZYH
  * @Date: 2022-08-08 16:42:18
- * @LastEditTime: 2022-08-28 23:25:34
+ * @LastEditTime: 2022-09-07 08:23:51
  * @Description:
  */
 
@@ -18,8 +18,12 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    editorData:{
-      type:String,
+    editorData: {
+      type: String,
+      default: '',
+    },
+    editorJsData:{
+      type: String,
       default:''
     }
   },
@@ -40,13 +44,16 @@ export default defineComponent({
     const showModel = ref(false);
     const activeKey = ref('1');
     const fileName = ref(`${+new Date()}.json`);
-    // const editorData = `{
-    //     "a":1,
-    //     "b":2
-    // }`;
+    const showModelVal = computed(()=>{
+        const val = activeKey.value === '1' ? props.editorData : props.editorJsData;
+        return val
+
+    })
     const handelCopy = async () => {
+
       try {
-        await toClipboard(props.editorData);
+        const val = activeKey.value === '1' ? props.editorData : props.editorJsData;
+        await toClipboard(val);
         message.success('复制成功！');
       } catch (e) {
         console.error(e);
@@ -55,9 +62,9 @@ export default defineComponent({
     const handelExport = () => {
       showModel.value = true;
     };
-    const handelTabChange = (e:string)=>{
-      console.log('eeeee',e)
-    }
+    const handelTabChange = (e: string) => {
+      console.log('eeeee', e);
+    };
     const handelCloseModel = () => {
       console.log('eeee', fileName.value);
       if (!fileName.value) fileName.value = `${+new Date()}.json`;
@@ -87,7 +94,7 @@ export default defineComponent({
               <a-tab-pane key="3" tab="css"></a-tab-pane>
             </a-tabs>
             {/*  @ts-ignore */}
-            <MonacoEditor height="800px" modelValue={props.editorData} language="json" />
+            <MonacoEditor height="800px" modelValue={showModelVal.value} language="json" />
           </a-drawer>
           <a-drawer
             class="form-drawer"
