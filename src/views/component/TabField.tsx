@@ -4,7 +4,8 @@
  * @LastEditTime: 2022-08-10 09:53:40
  * @Description:
  */
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
+import IconDialog from './IconDialog'
 export default defineComponent({
   props: {
     activeData: {
@@ -17,15 +18,18 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const formList:any = computed({
-      get(){
-        console.log('props.activeData;',props);
+    const formList: any = computed({
+      get() {
+        console.log('props.activeData;', props);
         return props.activeData;
       },
-      set(){
-        
-      }
-    })
+      set() {},
+    });
+    const iconShow = ref(false)
+    const handelClick = ()=>{
+  
+      iconShow.value = true
+    }
     return () => (
       <div class="field-box">
         <a-form labelCol={{ style: { width: '80px' } }} wrapperCol={{ span: 14 }}>
@@ -48,16 +52,25 @@ export default defineComponent({
             <a-input />
           </a-form-item>
           <a-form-item label="前图标">
-            <a-input />
+            <a-input-search
+              placeholder="前图标"
+              size="large"
+              v-slots={{ enterButton: () => <a-button>选择</a-button> }}
+            ></a-input-search>
           </a-form-item>
           <a-form-item label="后图标">
-            <a-input />
+            <a-input-search
+              placeholder="后图标"
+              size="large"
+              onSearch={handelClick}
+              v-slots={{ enterButton: () => <a-button>选择</a-button> }}
+            ></a-input-search>
           </a-form-item>
           <a-form-item label="最多输入" wrapperCol={{ span: 12 }}>
             <a-input-number
               v-model={[formList.value.componentProps.maxlength, 'value']}
               min={1}
-              addon-after='个字符'
+              addon-after="个字符"
             />
           </a-form-item>
           <a-form-item label="显示标签" wrapperCol={{ span: 4 }}>
@@ -70,6 +83,7 @@ export default defineComponent({
             <a-switch v-model={[formList.value.componentProps.disabled, 'checked']} />
           </a-form-item>
         </a-form>
+       <IconDialog v-model={[iconShow.value,'visible']} />
       </div>
     );
   },
